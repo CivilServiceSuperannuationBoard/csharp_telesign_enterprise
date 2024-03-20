@@ -1,0 +1,3 @@
+[submodule "Telesign"]
+	path = Telesign
+	url = https://github.com/CivilServiceSuperannuationBoard/csharp_telesign.git
