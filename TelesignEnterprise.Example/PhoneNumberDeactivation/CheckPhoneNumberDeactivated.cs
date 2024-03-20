@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
+using System.Text.Json;
 using Telesign;
 
 namespace TelesignEnterprise.Example.PhoneNumberDeactivation
@@ -21,16 +21,13 @@ namespace TelesignEnterprise.Example.PhoneNumberDeactivation
 
                 if (telesignResponse.OK)
                 {
-                    if (telesignResponse.Json["number_deactivation"]["last_deactivated"].Type != JTokenType.Null)
+                    if (telesignResponse.Json["number_deactivation"]?["last_deactivated"] != null)
                     {
-                        Console.WriteLine(string.Format("Phone number {0} was last deactivated {1}.",
-                                telesignResponse.Json["number_deactivation"]["number"],
-                                telesignResponse.Json["number_deactivation"]["last_deactivated"]));
+                        Console.WriteLine("Phone number {0} was last deactivated {1}.", telesignResponse.Json["number_deactivation"]["number"], telesignResponse.Json["number_deactivation"]["last_deactivated"]);
                     }
                     else
                     {
-                        Console.WriteLine(string.Format("Phone number {0} has not been deactivated.",
-                                telesignResponse.Json["number_deactivation"]["number"]));
+                        Console.WriteLine("Phone number {0} has not been deactivated.", telesignResponse.Json["number_deactivation"]?["number"] ?? "");
                     }
                 }
             }
